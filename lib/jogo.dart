@@ -7,53 +7,53 @@ class Jogo extends StatefulWidget {
 }
 
 class _JogoState extends State<Jogo> {
-  var _imagemApp = const AssetImage('images/padrao.png');
-  var _mensagem = 'Escolha uma opção abaixo';
+  var _imagemApp = const AssetImage('images/default.png');
+  var _mensagem = 'Choose an option bellow';
 
   void _opcaoSelecionada(String escolhaUsuario) {
-    var opcoes = ['pedra', 'papel', 'tesoura'];
+    var opcoes = ['rock', 'paper', 'scissors'];
     var numero = Random().nextInt(3);
     var escolhaApp = opcoes[numero];
 
     // Exibição da imagem escolhida pelo App
     switch (escolhaApp) {
-      case 'pedra':
+      case 'rock':
         setState(() {
-          _imagemApp = const AssetImage('images/pedra.png');
+          _imagemApp = const AssetImage('images/rock.png');
         });
         break;
-      case 'papel':
+      case 'paper':
         setState(() {
-          _imagemApp = const AssetImage('images/papel.png');
+          _imagemApp = const AssetImage('images/paper.png');
         });
         break;
-      case 'tesoura':
+      case 'scissors':
         setState(() {
-          _imagemApp = const AssetImage('images/tesoura.png');
+          _imagemApp = const AssetImage('images/scissors.png');
         });
         break;
     }
 
     //Validação do ganhador
     //Usuario Ganhador
-    if ((escolhaUsuario == 'pedra' && escolhaApp == 'tesoura') || //
-            (escolhaUsuario == 'tesoura' && escolhaApp == 'papel') || //
-            (escolhaUsuario == 'papel' && escolhaApp == 'pedra') //
+    if ((escolhaUsuario == 'rock' && escolhaApp == 'scissors') || //
+            (escolhaUsuario == 'scissors' && escolhaApp == 'paper') || //
+            (escolhaUsuario == 'paper' && escolhaApp == 'rock') //
         ) {
       setState(() {
-        _mensagem = 'Parabéns!!! Você ganhou :)';
+        _mensagem = 'Congrats!!! You WIN :)';
       });
       //App Ganhador
-    } else if ((escolhaApp == 'pedra' && escolhaUsuario == 'tesoura') || //
-            (escolhaApp == 'tesoura' && escolhaUsuario == 'papel') || //
-            (escolhaApp == 'papel' && escolhaUsuario == 'pedra') //
+    } else if ((escolhaApp == 'rock' && escolhaUsuario == 'scissors') || //
+            (escolhaApp == 'scissors' && escolhaUsuario == 'paper') || //
+            (escolhaApp == 'paper' && escolhaUsuario == 'rock') //
         ) {
       setState(() {
-        _mensagem = 'Você perdeu :(';
+        _mensagem = 'Oh! You lose :(';
       });
     } else {
       setState(() {
-        _mensagem = 'Empatamos ;)';
+        _mensagem = 'Close, we draw ;)';
       });
     }
   }
@@ -70,7 +70,7 @@ class _JogoState extends State<Jogo> {
           const Padding(
             padding: EdgeInsets.only(top: 32, bottom: 16),
             child: Text(
-              'Escolha do App',
+              'App choice',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
@@ -90,23 +90,23 @@ class _JogoState extends State<Jogo> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               GestureDetector(
-                onTap: () => _opcaoSelecionada('pedra'),
+                onTap: () => _opcaoSelecionada('rock'),
                 child: Image.asset(
-                  'images/pedra.png',
+                  'images/rock.png',
                   height: 100,
                 ),
               ),
               GestureDetector(
-                onTap: () => _opcaoSelecionada('papel'),
+                onTap: () => _opcaoSelecionada('paper'),
                 child: Image.asset(
-                  'images/papel.png',
+                  'images/paper.png',
                   height: 100,
                 ),
               ),
               GestureDetector(
-                onTap: () => _opcaoSelecionada('tesoura'),
+                onTap: () => _opcaoSelecionada('scissors'),
                 child: Image.asset(
-                  'images/tesoura.png',
+                  'images/scissors.png',
                   height: 100,
                 ),
               ),
